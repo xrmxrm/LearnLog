@@ -8,6 +8,9 @@
 # Directory for scratch files
 scratch/
 
+# Directory for migrations
+migrations/
+
 # Icon must end with two \r
 Icon
 

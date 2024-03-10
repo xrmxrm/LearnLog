@@ -44,3 +44,17 @@ This project is based on Python Crash Course by Eric Matthes, third edition, fro
    7. `python manage.py startapp learning_logs` 
 
       This creates the app's infrastructure in a folder called `learning_logs`.
+
+# App development
+
+In `models.py`, add a Topic class. In `settings.py` in the project directory, add `learning_logs` to the installed apps. Then run 
+
+   ```python manage.py makemigrations learning_logs```
+
+Then apply the migration:
+
+   ```python manage.py migrate```
+
+# Admin site and superuser
+
+Exexute `python manage.py createsuperuser` and follow the prompts.
