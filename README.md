@@ -4,17 +4,27 @@ This project is based on Python Crash Course by Eric Matthes, third edition, fro
 
 # Setup
 
-  1. Create virtual environment `~/V/ll_env` and activate it.
-  2. Upgrade pip and use it to install Django 5.0.3
+  1. `~/V$ python -m venv ll_env`
+  
+     This creates a virtual environment `~/V/ll_env`.
+
+  2. source ~/V/ll_env/bin/activate
+
+     To activate it, execute 
+
   3. `django-admin startproject ll_project .`
+  
+     This installs Django 5.0.3
+  
+  4. `django-admin startproject ll_project .`
 
-     This creates `settings.py`, `urls.py`, `wsgi.py` and a few other files.
+     This starts the project and creates `settings.py`, `urls.py`, `wsgi.py` and a few other files.
 
-  4. `python manage.py migrate`
+  5. `python manage.py migrate`
 
      This builds the database (SQLite) in `db.sqlite3`.
 
-  5. `python manage.py runserver`
+  6. `python manage.py runserver`
 
      This starts the development server running on `localhost:8000`:
 
@@ -31,6 +41,6 @@ This project is based on Python Crash Course by Eric Matthes, third edition, fro
      ```
      Keep the server running in its own terminal window, and in another, continue development.
 
-   6. `python manage.py startapp learning_logs` 
+   7. `python manage.py startapp learning_logs` 
 
-      This creates the app's infrastructure.
+      This creates the app's infrastructure in a folder called `learning_logs`.
