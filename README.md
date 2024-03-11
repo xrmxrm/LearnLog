@@ -55,6 +55,59 @@ Then apply the migration:
 
    ```python manage.py migrate```
 
-# Admin site and superuser
+## Admin site and superuser
 
 Exexute `python manage.py createsuperuser` and follow the prompts.
+
+To register Topic with the admin site:
+
+```
+from .models import Topic
+
+admin.site.register(Topic)
+```
+## Add Entry to model
+
+Edit `models.py`, then run the familiar pattern:
+
+```
+python manage.py makemigrations learning_logs
+python manage.py migrate
+```
+
+Then register Entry on the admin site by editing `admin.py`.
+
+The server notices the change, and the site updates automatically.
+
+## Interactive shell
+
+Execute `python manage.py shell` to start an interactive shell.
+
+## Pages
+
+Pages require URLs, views, and templates. URLs are defined by patterns which determine which page to return. The page is defined by a view, which may use a template.
+
+### URLs
+
+Start by adding `path('', include('learning_logs.urls')),` to the `urls.py` file in the `ll_project` directory. That causes any URL other than the admin ones to use the `urls.py` file in the `learning_logs` directory.
+
+In `learning_logs/urls.py`, the `urlpatterns` list begins with the home page:
+
+   ```path('', views.index, name='index'),```
+
+The first arg matches the base URL (`localhost:8000` for now). The second says to call the `index` function in the `views.py` module. The third gives this URL pattern a name.
+
+### Views
+
+The index function in views.py has the following code:
+
+```
+def index(request):
+    return render(request, 'learning_logs/index.html')
+
+```
+
+This passes the `request` object and the 'learning_logs/index.html' template to the `render` function.
+
+### Templates
+
