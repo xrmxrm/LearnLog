@@ -84,7 +84,8 @@ def edit_entry(request, entry_id):
         # POST data submitted; process data
         form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
-            form.save()
+            if request_owns_topic(request, topic):
+                form.save()
             return redirect('learning_logs:topic', topic_id=topic.id)
         
     # Initial or invalid; (re)display form.
