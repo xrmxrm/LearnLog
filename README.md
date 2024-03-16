@@ -85,7 +85,7 @@ Execute `python manage.py shell` to start an interactive shell.
 
 ## Pages
 
-Pages require URLs, views, and templates. URLs are defined by patterns which determine which page to return. The page is defined by a view, which may use a template.
+Pages require URLs, views, and templates. URLs are defined by patterns which determine which page to return. The page is defined by a view, which may use a template. Some pages use forms to obtain user input.
 
 ### URLs
 
@@ -111,3 +111,21 @@ This passes the `request` object and the 'learning_logs/index.html' template to 
 
 ### Templates
 
+Templates define types of pages. In this project, they inherit from base.html, which contains the following code:
+
+```
+<p>
+      <a href="{% url 'learning_logs:index' %}">Learning Log</a> -
+      <a href="{% url 'learning_logs:topics' %}">Topics</a>
+        </p>
+    
+    {% block content %}{% endblock content %}
+```
+
+All pages have the same links, even when the link is to the page you're on. The base template can also have a single copy of company boilerplate.
+
+### Forms
+
+The `forms.py` module defines input forms for topics and entries. The forms are aware of the `Topic` and `Entry` classes defined in the `models.py` module. The forms are classes that inherit from `forms.ModelForm`, so they come with an `is_valid` method that eliminates the need for a lot of ad hoc input validation code.
+
+Templates make it easy to use the forms. The `new_topic.html` and `new_entry.html` templates display the forms, protect against cross-site request forgery, and display a submit button.

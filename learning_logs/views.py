@@ -21,7 +21,7 @@ def topic(request, topic_id):
     return render(request, 'learning_logs/topic.html', context)
 
 def new_topic(request):
-    """Add a new topic"""
+    """Add a topic"""
     if request.method != 'POST':
         # No data submitted; create a blank form.
         form = TopicForm()
@@ -32,19 +32,19 @@ def new_topic(request):
             form.save()
             return redirect('learning_logs:topics')
 
-    # Display a blank or invalid form.
+    # Blank or invalid form; display form (again)
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
 def new_entry(request, topic_id):
-    """Add a new entry for a particular topic."""
+    """Add an entry for the specified topic"""
     topic = Topic.objects.get(id=topic_id)
 
     if request.method != 'POST':
-        # No data submitted; create a blank form.
+        # No data - probably a GET; create a blank form
         form = EntryForm()
     else:
-        # POST data submitted; process data.
+        # POST data submitted; process data
         form = EntryForm(data=request.POST)
         if form.is_valid():
             new_entry = form.save(commit=False)
@@ -52,6 +52,6 @@ def new_entry(request, topic_id):
             new_entry.save()
             return redirect('learning_logs:topic', topic_id=topic_id)
 
-    # Display a blank or invalid form.
+    # Blank or invalid form; display form (again)
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
